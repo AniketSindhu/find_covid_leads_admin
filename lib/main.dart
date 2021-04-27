@@ -1,18 +1,40 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Go corona',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: FutureBuilder(
+          future: _initialization,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Scaffold(
+                  body: Center(
+                      child: Text(
+                'Error',
+                style: TextStyle(color: Colors.red),
+              )));
+            }
+            if (snapshot.connectionState == ConnectionState.done) {
+              return MyHomePage(title: 'Go corona');
+            }
+            return Scaffold(
+                body: Center(
+              child: CircularProgressIndicator(),
+            ));
+          }),
     );
   }
 }
@@ -58,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
-      ), 
+      ),
     );
   }
 }
