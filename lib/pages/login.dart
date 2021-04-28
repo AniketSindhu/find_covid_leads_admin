@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_corona_admin/methods/homepage.dart';
+import 'package:go_corona_admin/pages/homepage.dart';
 import 'package:go_corona_admin/methods/loginMethod.dart';
 import 'package:velocity_x/velocity_x.dart';
 

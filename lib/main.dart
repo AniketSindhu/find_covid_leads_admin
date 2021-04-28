@@ -1,8 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:go_corona_admin/methods/addPost.dart';
+import 'package:go_corona_admin/pages/addPost.dart';
 import 'package:go_corona_admin/pages/login.dart';
-import 'package:velocity_x/velocity_x.dart';
+
+import 'methods/loginMethod.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
               )));
             }
             if (snapshot.connectionState == ConnectionState.done) {
-              return AddPost();
+              return LoginPage();
             }
             return Scaffold(
                 body: Center(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_corona_admin/methods/addPost.dart';
+import 'package:go_corona_admin/pages/addPost.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Homepage extends StatefulWidget {
@@ -16,8 +16,8 @@ class _HomepageState extends State<Homepage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Vx.yellow500,
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddPost()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddPost(widget.email)));
         },
         child: Icon(Icons.add, color: Colors.white),
       ),
