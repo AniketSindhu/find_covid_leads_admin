@@ -18,33 +18,63 @@ Future<bool> addPost(
     BuildContext context,
     String email}) async {
   try {
-    String mimeType = mime(basename(image.fileName));
-    final String extension = extensionFromMime(mimeType);
-
-    var metadata = SettableMetadata(
-      contentType: mimeType,
-    );
-    final uploadTask = await firebase_storage.FirebaseStorage.instance
-        .ref('images/${image.fileName}')
-        .putData(image.data, metadata);
-    String imageUrl = await uploadTask.ref.getDownloadURL();
-
-    await FirebaseFirestore.instance.collection('posts').add({
-      'description': description,
-      'location': location,
-      'resources': resources,
-      'image': imageUrl,
-      'postedBy': email,
-      'time': DateTime.now(),
-      'upvotes': 0
-    }).then((value) {
+    if (image == null) {
+      await FirebaseFirestore.instance.collection('posts').add({
+        'description': description,
+        'location': location.toLowerCase(),
+        'resources': resources,
+        'image': null,
+        'postedBy': email.toLowerCase(),
+        'time': DateTime.now(),
+        'upvotes': 0
+      }).then((value) async {
+        await FirebaseFirestore.instance
+            .collection('locations')
+            .doc('locations')
+            .update({
+          'loc': FieldValue.arrayUnion([location.toLowerCase()])
+        });
+        return true;
+      }).onError((error, stackTrace) {
+        context.showToast(
+            msg: error.message, bgColor: Colors.red, textColor: Colors.white);
+        return false;
+      });
       return true;
-    }).onError((error, stackTrace) {
-      context.showToast(
-          msg: error.message, bgColor: Colors.red, textColor: Colors.white);
-      return false;
-    });
-    return true;
+    } else {
+      String mimeType = mime(basename(image.fileName));
+      final String extension = extensionFromMime(mimeType);
+      var metadata = SettableMetadata(
+        contentType: mimeType,
+      );
+      final uploadTask = await firebase_storage.FirebaseStorage.instance
+          .ref('images/${image.fileName}')
+          .putData(image.data, metadata);
+      String imageUrl = await uploadTask.ref.getDownloadURL();
+
+      await FirebaseFirestore.instance.collection('posts').add({
+        'description': description,
+        'location': location.toLowerCase(),
+        'resources': resources,
+        'image': imageUrl,
+        'postedBy': email.toLowerCase(),
+        'time': DateTime.now(),
+        'upvotes': 0
+      }).then((value) async {
+        await FirebaseFirestore.instance
+            .collection('locations')
+            .doc('locations')
+            .update({
+          'loc': FieldValue.arrayUnion([location.toLowerCase()])
+        });
+        return true;
+      }).onError((error, stackTrace) {
+        context.showToast(
+            msg: error.message, bgColor: Colors.red, textColor: Colors.white);
+        return false;
+      });
+      return true;
+    }
   } on FirebaseException catch (e) {
     print(e.message);
     context.showToast(
