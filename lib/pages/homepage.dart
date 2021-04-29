@@ -9,7 +9,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class Homepage extends StatefulWidget {
   String email;
-  Homepage({this.email = 'sindhuaniket@gmail.com'});
+  Homepage({this.email});
   @override
   _HomepageState createState() => _HomepageState();
 }
@@ -59,7 +59,23 @@ class _HomepageState extends State<Homepage> {
                           Post post = Post.fromDocument(
                               snapshot.data.docs[index].data());
                           return VxResponsive(
-                            xlarge: postWidget(post)
+                            xlarge: postWidget(post, context)
+                                .width(context.screenWidth * 0.55)
+                                .withDecoration(BoxDecoration(
+                                    border: Border.all(width: 0.3),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5)))
+                                .makeCentered()
+                                .py12(),
+                            large: postWidget(post, context)
+                                .width(context.screenWidth * 0.55)
+                                .withDecoration(BoxDecoration(
+                                    border: Border.all(width: 0.3),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5)))
+                                .makeCentered()
+                                .py12(),
+                            medium: postWidget(post, context)
                                 .width(context.screenWidth * 0.75)
                                 .withDecoration(BoxDecoration(
                                     border: Border.all(width: 0.3),
@@ -67,23 +83,7 @@ class _HomepageState extends State<Homepage> {
                                     borderRadius: BorderRadius.circular(5)))
                                 .makeCentered()
                                 .py12(),
-                            large: postWidget(post)
-                                .width(context.screenWidth * 0.75)
-                                .withDecoration(BoxDecoration(
-                                    border: Border.all(width: 0.3),
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5)))
-                                .makeCentered()
-                                .py12(),
-                            medium: postWidget(post)
-                                .width(context.screenWidth * 0.8)
-                                .withDecoration(BoxDecoration(
-                                    border: Border.all(width: 0.3),
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5)))
-                                .makeCentered()
-                                .py12(),
-                            small: postWidget(post)
+                            small: postWidget(post, context)
                                 .width(context.screenWidth * 0.9)
                                 .withDecoration(BoxDecoration(
                                     border: Border.all(width: 0.3),
@@ -91,7 +91,7 @@ class _HomepageState extends State<Homepage> {
                                     borderRadius: BorderRadius.circular(5)))
                                 .makeCentered()
                                 .py12(),
-                            xsmall: postWidget(post)
+                            xsmall: postWidget(post, context)
                                 .width(context.screenWidth * 0.9)
                                 .withDecoration(BoxDecoration(
                                     border: Border.all(width: 0.3),
@@ -99,7 +99,7 @@ class _HomepageState extends State<Homepage> {
                                     borderRadius: BorderRadius.circular(5)))
                                 .makeCentered()
                                 .py12(),
-                            fallback: postWidget(post)
+                            fallback: postWidget(post, context)
                                 .width(context.screenWidth * 0.75)
                                 .withDecoration(BoxDecoration(
                                     border: Border.all(width: 0.3),

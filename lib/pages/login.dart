@@ -20,9 +20,9 @@ class _LoginPageState extends State<LoginPage> {
           [
             HStack(
               [
-                "Go ".text.bold.yellow400.size(25).make(),
-                "Corona".text.black.bold.size(25).make(),
-                "!".text.bold.yellow400.size(25).make(),
+                "Find ".text.bold.color(Colors.redAccent).size(25).make(),
+                "Covid".text.black.bold.size(25).make(),
+                " leads!".text.bold.color(Colors.redAccent).size(25).make(),
               ],
               alignment: MainAxisAlignment.center,
               axisSize: MainAxisSize.max,
@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ).p12(),
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Vx.yellow400)),
+                  backgroundColor: MaterialStateProperty.all(Colors.redAccent)),
             )
           ],
           alignment: MainAxisAlignment.center,

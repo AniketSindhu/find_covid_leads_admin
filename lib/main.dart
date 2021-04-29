@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               )));
             }
             if (snapshot.connectionState == ConnectionState.done) {
-              return Homepage();
+              return LoginPage();
             }
             return Scaffold(
                 body: Center(
