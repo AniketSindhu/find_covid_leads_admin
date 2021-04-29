@@ -1,10 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:go_corona_admin/pages/addPost.dart';
-import 'package:go_corona_admin/pages/homepage.dart';
 import 'package:go_corona_admin/pages/login.dart';
-
-import 'methods/loginMethod.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

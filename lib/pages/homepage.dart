@@ -1,14 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_corona_admin/model/post.dart';
 import 'package:go_corona_admin/pages/addPost.dart';
 import 'package:go_corona_admin/widgets/postWidget.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class Homepage extends StatefulWidget {
-  String email;
+  final String email;
   Homepage({this.email});
   @override
   _HomepageState createState() => _HomepageState();

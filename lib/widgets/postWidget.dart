@@ -85,7 +85,7 @@ VxBox postWidget(Post post, BuildContext context) {
                           placeholder: (context, url) => VxBox()
                               .width(double.infinity)
                               .roundedSM
-                              .height(context.screenHeight / 1.8)
+                              .height(context.screenHeight * 0.9)
                               .gray500
                               .make()
                               .shimmer(),
@@ -106,8 +106,8 @@ VxBox postWidget(Post post, BuildContext context) {
                             backgroundColor: Colors.redAccent,
                           ))
                       .toList(),
-                ),
-                SizedBox(height: 5),
+                ).objectBottomLeft(),
+                SizedBox(height: 10),
                 "Location: ${post.location}"
                     .text
                     .bold
