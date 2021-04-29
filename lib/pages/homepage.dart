@@ -35,13 +35,15 @@ class _HomepageState extends State<Homepage> {
         body: StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('posts')
+              .orderBy('time', descending: true)
               .where('postedBy', isEqualTo: widget.email.toLowerCase())
               .snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CircularProgressIndicator().centered();
-            } else if (!snapshot.hasData || snapshot.hasError) {
-              print(snapshot.data.docs[0].data());
+            } else if (snapshot.data == null || snapshot.hasError) {
+              //print(snapshot.data.docs[0].data());
+              print(snapshot.error);
               return "Something Went wrong".text.red500.size(20).makeCentered();
             } else {
               if (snapshot.data.docs.length == 0) {

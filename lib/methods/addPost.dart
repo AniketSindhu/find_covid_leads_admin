@@ -8,7 +8,6 @@ import 'package:mime_type/mime_type.dart';
 import 'package:path/path.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'dart:html' as html;
 
 Future<bool> addPost(
     {String location,

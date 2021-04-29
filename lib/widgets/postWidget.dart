@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_corona_admin/model/post.dart';
+import 'package:link_text/link_text.dart';
+import 'package:readmore/readmore.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -51,7 +53,15 @@ VxBox postWidget(Post post) {
           ? SizedBox(height: 10)
           : Container(),
       post.description != null || post.description.trim().length != 0
-          ? "${post.description}".text.make().objectCenterLeft()
+          ? ReadMoreText(
+              post.description,
+              trimLines: 2,
+              colorClickableText: Colors.redAccent,
+              trimMode: TrimMode.Line,
+              trimCollapsedText: 'read more',
+              trimExpandedText: 'Show less',
+              moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ).objectCenterLeft()
           : Container()
     ],
     crossAlignment: CrossAxisAlignment.center,

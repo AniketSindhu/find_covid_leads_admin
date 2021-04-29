@@ -110,7 +110,7 @@ class _AddPostState extends State<AddPost> {
                         borderRadius: BorderRadius.circular(5))),
               ),
             ],
-          ).w56(context),
+          ).w64(context),
           SizedBox(height: 15),
           Column(
             children: [
@@ -127,7 +127,7 @@ class _AddPostState extends State<AddPost> {
                         borderRadius: BorderRadius.circular(5))),
               ),
             ],
-          ).w56(context),
+          ).w64(context),
           SizedBox(height: 15),
           Column(
             children: [
@@ -151,7 +151,7 @@ class _AddPostState extends State<AddPost> {
                 },
               ),
             ],
-          ).w56(context),
+          ).w64(context),
           SizedBox(height: 15),
           ElevatedButton(
             onPressed: () async {
