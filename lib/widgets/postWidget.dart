@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_corona_admin/methods/deletePost.dart';
 import 'package:go_corona_admin/model/post.dart';
+import 'package:go_corona_admin/theme/theme.dart';
 import 'package:readmore/readmore.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -103,7 +104,7 @@ VxBox postWidget(Post post, BuildContext context) {
                   children: post.resources
                       .map((e) => Chip(
                             label: '$e'.toString().text.white.make(),
-                            backgroundColor: Colors.redAccent,
+                            backgroundColor: AppColors().mainColor,
                           ))
                       .toList(),
                 ).objectBottomLeft(),
@@ -121,7 +122,7 @@ VxBox postWidget(Post post, BuildContext context) {
                     ? ReadMoreText(
                         post.description,
                         trimLines: 2,
-                        colorClickableText: Colors.redAccent,
+                        colorClickableText: AppColors().mainColor,
                         trimMode: TrimMode.Line,
                         trimCollapsedText: 'read more',
                         trimExpandedText: 'Show less',

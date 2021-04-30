@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_corona_admin/pages/homepage.dart';
 import 'package:go_corona_admin/methods/loginMethod.dart';
+import 'package:go_corona_admin/theme/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,9 +22,14 @@ class _LoginPageState extends State<LoginPage> {
           [
             HStack(
               [
-                "Find ".text.bold.color(Colors.redAccent).size(25).make(),
+                "Find ".text.bold.color(AppColors().mainColor).size(25).make(),
                 "Covid".text.black.bold.size(25).make(),
-                " leads!".text.bold.color(Colors.redAccent).size(25).make(),
+                " leads!"
+                    .text
+                    .bold
+                    .color(AppColors().mainColor)
+                    .size(25)
+                    .make(),
               ],
               alignment: MainAxisAlignment.center,
               axisSize: MainAxisSize.max,
@@ -65,6 +72,9 @@ class _LoginPageState extends State<LoginPage> {
                   final result =
                       await login(email: email.text, pass: pass.text);
                   if (result) {
+                    SharedPreferences preferences =
+                        await SharedPreferences.getInstance();
+                    preferences.setString('email', email.text);
                     context.showToast(
                         msg: 'Success!',
                         bgColor: Colors.green,
@@ -99,7 +109,8 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ).p12(),
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.redAccent)),
+                  backgroundColor:
+                      MaterialStateProperty.all(AppColors().mainColor)),
             )
           ],
           alignment: MainAxisAlignment.center,

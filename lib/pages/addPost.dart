@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
+import 'package:go_corona_admin/theme/theme.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../methods/addPost.dart';
@@ -49,7 +50,7 @@ class _AddPostState extends State<AddPost> {
       appBar: AppBar(
           title: "Add Post".text.white.make(),
           centerTitle: true,
-          backgroundColor: Colors.redAccent),
+          backgroundColor: AppColors().mainColor),
       body: VStack(
         [
           _image == null
@@ -67,7 +68,7 @@ class _AddPostState extends State<AddPost> {
                     [
                       Icon(
                         Icons.camera_alt,
-                        color: hover ? Colors.redAccent : Colors.grey,
+                        color: hover ? AppColors().mainColor : Colors.grey,
                         size: 50,
                       ),
                       SizedBox(height: 15),
@@ -83,7 +84,8 @@ class _AddPostState extends State<AddPost> {
                       .withDecoration(BoxDecoration(
                           color: Colors.white,
                           border: Border.all(
-                              color: hover ? Colors.redAccent : Colors.grey)))
+                              color:
+                                  hover ? AppColors().mainColor : Colors.grey)))
                       .makeCentered(),
                 )
               : InkWell(
@@ -138,7 +140,7 @@ class _AddPostState extends State<AddPost> {
                 spacing: 8,
                 runSpacing: 8,
                 wrapCrossAlignment: WrapCrossAlignment.start,
-                choiceActiveStyle: C2ChoiceStyle(color: Colors.redAccent),
+                choiceActiveStyle: C2ChoiceStyle(color: AppColors().mainColor),
                 value: resources,
                 choiceItems: C2Choice.listFrom<String, String>(
                   source: availableResources,
@@ -205,7 +207,8 @@ class _AddPostState extends State<AddPost> {
               mainAxisSize: MainAxisSize.min,
             ).p8(),
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.redAccent)),
+                backgroundColor:
+                    MaterialStateProperty.all(AppColors().mainColor)),
           )
         ],
         alignment: MainAxisAlignment.center,

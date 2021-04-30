@@ -2,7 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_corona_admin/model/post.dart';
 import 'package:go_corona_admin/pages/addPost.dart';
+import 'package:go_corona_admin/pages/login.dart';
+import 'package:go_corona_admin/theme/theme.dart';
 import 'package:go_corona_admin/widgets/postWidget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Homepage extends StatefulWidget {
@@ -17,13 +20,29 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.redAccent,
+          backgroundColor: AppColors().mainColor,
           title: "Your posts".text.make(),
           centerTitle: true,
+          actions: [
+            InkWell(
+                onTap: () async {
+                  SharedPreferences pref =
+                      await SharedPreferences.getInstance();
+                  pref.clear();
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+                child: Row(
+                  children: [
+                    Icon(Icons.logout, color: Colors.white).px2(),
+                    "Logout".text.white.make()
+                  ],
+                ).px12())
+          ],
         ),
         backgroundColor: Color(0xffDAE0E6),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.redAccent,
+          backgroundColor: AppColors().mainColor,
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => AddPost(widget.email)));
