@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
+import 'package:go_corona_admin/model/cities.dart';
 import 'package:go_corona_admin/theme/theme.dart';
 import 'package:image_picker_web/image_picker_web.dart';
+import 'package:searchable_dropdown/searchable_dropdown.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../methods/addPost.dart';
 
@@ -29,8 +31,11 @@ class _AddPostState extends State<AddPost> {
     'ICU',
     'Beds',
     'Food',
+    'Ambulance',
+    'Other'
   ];
-  TextEditingController location = TextEditingController();
+
+  String location;
   TextEditingController description = TextEditingController();
   MediaInfo _image;
 
@@ -103,14 +108,33 @@ class _AddPostState extends State<AddPost> {
             children: [
               "Location".text.bold.size(18).make().objectCenterLeft(),
               SizedBox(height: 10),
-              TextFormField(
-                controller: location,
+              SearchableDropdown.single(
+                  displayClearIcon: false,
+                  items: cities
+                      .map((e) => DropdownMenuItem(
+                            child: '$e'.text.make(),
+                            value: e,
+                          ))
+                      .toList(),
+                  value: location,
+                  hint: 'Select a location'.text.make(),
+                  onChanged: (val) {
+                    location = val;
+                    setState(() {});
+                  })
+/*               DropdownButtonFormField(
+                value: location,
+                hint: 'Select a locaton'.text.make(),
+                onChanged: (val){
+                  location = val;  
+                  setState(() {});
+                },
                 decoration: InputDecoration(
-                    labelText: 'Enter a Location',
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(width: 0.5),
-                        borderRadius: BorderRadius.circular(5))),
-              ),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide()
+                  )
+                ),
+                items: cities.map((e) => DropdownMenuItem(child: '$e'.text.make(),value: e,)).toList()) */
             ],
           ).w64(context),
           SizedBox(height: 15),
@@ -157,7 +181,7 @@ class _AddPostState extends State<AddPost> {
           SizedBox(height: 15),
           ElevatedButton(
             onPressed: () async {
-              if (location.text.trim().length == 0) {
+              if (location.trim().length == 0) {
                 context.showToast(
                     msg: 'location can\'t be empty',
                     bgColor: Colors.red,
@@ -177,7 +201,7 @@ class _AddPostState extends State<AddPost> {
                 loading = true;
                 setState(() {});
                 bool result = await addPost(
-                  location: location.text.toLowerCase(),
+                  location: location.toLowerCase(),
                   description: description.text,
                   resources: resources,
                   image: _image,
