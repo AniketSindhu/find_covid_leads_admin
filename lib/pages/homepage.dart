@@ -71,6 +71,7 @@ class _HomepageState extends State<Homepage> {
                     20.heightBox,
                     ListView.builder(
                         shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         itemCount: snapshot.data.docs.length,
                         itemBuilder: (context, index) {
                           Post post = Post.fromDocument(

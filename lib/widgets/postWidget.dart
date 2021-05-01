@@ -77,7 +77,7 @@ VxBox postWidget(Post post, BuildContext context) {
                     ? Container().h(0).w(0)
                     : ConstrainedBox(
                         constraints: BoxConstraints(
-                            maxHeight: context.screenHeight * 0.9,
+                            maxHeight: context.screenHeight * 0.5,
                             maxWidth: double.infinity,
                             minWidth: 100,
                             minHeight: 200),
