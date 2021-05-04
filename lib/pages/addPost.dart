@@ -36,8 +36,8 @@ class _AddPostState extends State<AddPost> {
     'Oxygen beds',
     'Concentrators',
     'Oxygen cans',
-    'Oxygen cylinder'
-        'Other'
+    'Oxygen cylinder',
+    'Other'
   ];
 
   String location;
