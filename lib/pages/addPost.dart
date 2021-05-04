@@ -32,7 +32,12 @@ class _AddPostState extends State<AddPost> {
     'Beds',
     'Food',
     'Ambulance',
-    'Other'
+    'Fabiflu',
+    'Oxygen beds',
+    'Concentrators',
+    'Oxygen cans',
+    'Oxygen cylinder'
+        'Other'
   ];
 
   String location;

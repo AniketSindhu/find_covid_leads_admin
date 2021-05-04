@@ -68627,7 +68627,7 @@ $S:154}
 F.a2c.prototype={}
 L.mE.prototype={
 ak:function(){var s=t.i
-return new L.Lt(H.b([],s),H.b(["Remdesivir","Favipiravir","Oxygen","Ventilator","Plasma","Tocilizumab","ICU","Beds","Food","Ambulance","Other"],s),D.KB(null),C.k)}}
+return new L.Lt(H.b([],s),H.b(["Remdesivir","Favipiravir","Oxygen","Ventilator","Plasma","Tocilizumab","ICU","Beds","Food","Ambulance","Fabiflu","Oxygen beds","Concentrators","Oxygen cans","Oxygen cylinderOther"],s),D.KB(null),C.k)}}
 L.Lt.prototype={
 oh:function(){var s=0,r=P.K(t.z),q=this,p
 var $async$oh=P.D(function(a,b){if(a===1)return P.H(b,r)
